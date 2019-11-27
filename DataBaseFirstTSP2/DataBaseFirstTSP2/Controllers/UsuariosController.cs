@@ -1,13 +1,9 @@
-﻿using System;
+﻿using DataBaseFirstTSP2.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DataBaseFirstTSP2.Models;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 
 namespace DataBaseFirstTSP2.Controllers
 {
@@ -16,8 +12,8 @@ namespace DataBaseFirstTSP2.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly DataBaseFirstTSP2Context _context;
-        LinkedList<Usuario> listUser;
-        LinkedList<EquipoDesarrollo> listEquipo;
+        private LinkedList<Usuario> listUser;
+        private LinkedList<EquipoDesarrollo> listEquipo;
 
         public UsuariosController(DataBaseFirstTSP2Context context)
         {
@@ -28,12 +24,38 @@ namespace DataBaseFirstTSP2.Controllers
         [HttpGet]
         public LinkedList<Usuario> GetUsuario()
         {
-            Usuario usuarioAux;
+            _context.ChangeTracker.LazyLoadingEnabled = false;
+
             listUser = new LinkedList<Usuario>();
-            var listAux = _context.Usuario.ToList();
-            foreach (var item in listAux)
+            listEquipo = new LinkedList<EquipoDesarrollo>();
+            var listUserDb = _context.Usuario.ToList();
+            var listaEquipoDb = _context.EquipoDesarrollo.ToList();
+
+            foreach (var user in listUserDb)
             {
-                listUser.AddLast(item);
+                foreach (var equipo in listaEquipoDb)
+                {
+                    if (user.EquipoDesarrolloId.Equals(equipo.EquipoDesarrolloId))
+                    {
+                        listEquipo.AddLast(new EquipoDesarrollo
+                        {
+                            EquipoDesarrolloId = equipo.EquipoDesarrolloId,
+                            Nombre = equipo.Nombre
+                        });
+                    }
+                }
+                listUser.AddLast(new Usuario
+                {
+                    UsuarioId = user.UsuarioId,
+                    Nombre = user.Nombre,
+                    Apellido = user.Apellido,
+                    Universidad = user.Universidad,
+                    Codigo = user.Codigo,
+                    Rol = user.Rol,
+                    EquipoDesarrolloId = user.EquipoDesarrolloId,
+                    EquipoDesarrollo = listEquipo.Last()
+
+                });
             }
 
             return listUser;
@@ -43,7 +65,7 @@ namespace DataBaseFirstTSP2.Controllers
         [HttpGet("{id}")]
         public Usuario GetUsuario(long id)
         {
-             listEquipo = new LinkedList<EquipoDesarrollo>();
+            listEquipo = new LinkedList<EquipoDesarrollo>();
 
             _context.ChangeTracker.LazyLoadingEnabled = false;
 
@@ -56,7 +78,6 @@ namespace DataBaseFirstTSP2.Controllers
                 return null;
             }
 
-            
             foreach (var item in _context.EquipoDesarrollo.ToList())
             {
                 if (usuario.EquipoDesarrolloId == item.EquipoDesarrolloId)
@@ -67,7 +88,7 @@ namespace DataBaseFirstTSP2.Controllers
                         Nombre = item.Nombre
                     });
                 }
-                
+
             }
 
             usuario.EquipoDesarrollo = listEquipo.First();

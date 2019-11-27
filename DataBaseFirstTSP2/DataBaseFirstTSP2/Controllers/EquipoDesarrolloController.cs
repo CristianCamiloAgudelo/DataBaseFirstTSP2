@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DataBaseFirstTSP2.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DataBaseFirstTSP2.Models;
 
 namespace DataBaseFirstTSP2.Controllers
 {
@@ -13,6 +11,7 @@ namespace DataBaseFirstTSP2.Controllers
     [ApiController]
     public class EquipoDesarrolloController : ControllerBase
     {
+        private LinkedList<EquipoDesarrollo> listaEquipo;
         private readonly DataBaseFirstTSP2Context _context;
 
         public EquipoDesarrolloController(DataBaseFirstTSP2Context context)
@@ -23,9 +22,22 @@ namespace DataBaseFirstTSP2.Controllers
 
         // GET: api/EquipoDesarrollo
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EquipoDesarrollo>>> GetEquipoDesarrollo()
+        public LinkedList<EquipoDesarrollo> GetEquipoDesarrollo()
         {
-            return await _context.EquipoDesarrollo.ToListAsync();
+            _context.ChangeTracker.LazyLoadingEnabled = false;
+
+            listaEquipo = new LinkedList<EquipoDesarrollo>();
+            var listEquipoDb = _context.EquipoDesarrollo.ToList();
+
+            foreach (var equipo in listEquipoDb)
+            {
+                listaEquipo.AddLast(new EquipoDesarrollo
+                {
+                    EquipoDesarrolloId = equipo.EquipoDesarrolloId,
+                    Nombre = equipo.Nombre
+                });
+            }
+            return listaEquipo;
         }
 
         // GET: api/EquipoDesarrollo/5
@@ -41,7 +53,7 @@ namespace DataBaseFirstTSP2.Controllers
             {
                 return null;
             }
-           
+
             return equipo;
         }
 

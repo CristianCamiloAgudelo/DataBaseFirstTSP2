@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DataBaseFirstTSP2.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DataBaseFirstTSP2.Models;
 
 namespace DataBaseFirstTSP2.Controllers
 {
@@ -13,6 +11,9 @@ namespace DataBaseFirstTSP2.Controllers
     [ApiController]
     public class PlanGrupalController : ControllerBase
     {
+        LinkedList<EquipoDesarrollo> listaEquipo;
+        LinkedList<PlanGrupal> listaPlanGrupal;
+
         private readonly DataBaseFirstTSP2Context _context;
 
         public PlanGrupalController(DataBaseFirstTSP2Context context)
@@ -22,23 +23,77 @@ namespace DataBaseFirstTSP2.Controllers
 
         // GET: api/PlanGrupal
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PlanGrupal>>> GetPlanGrupal()
+        public LinkedList<PlanGrupal> GetPlanGrupal()
         {
-            return await _context.PlanGrupal.ToListAsync();
+            listaEquipo = new LinkedList<EquipoDesarrollo>();
+            listaPlanGrupal = new LinkedList<PlanGrupal>();
+
+            _context.ChangeTracker.LazyLoadingEnabled = false;
+
+            var listaPlanGrupalBd = _context.PlanGrupal.ToList();
+            var listaEquipoDb = _context.EquipoDesarrollo.ToList();
+
+            foreach (var plan in listaPlanGrupalBd)
+            {
+                foreach (var equipo in listaEquipoDb)
+                {
+                    if (plan.EquipoDesarrolloId == equipo.EquipoDesarrolloId)
+                    {
+                        listaEquipo.AddLast(new EquipoDesarrollo
+                        {
+                            EquipoDesarrolloId = equipo.EquipoDesarrolloId,
+                            Nombre = equipo.Nombre
+                        });
+                    }
+                }
+                listaPlanGrupal.AddLast(new PlanGrupal
+                {
+                    PlanGrupalId = plan.PlanGrupalId,
+                    Nombre = plan.Nombre,
+                    EquipoDesarrolloId = plan.EquipoDesarrolloId,
+                    EquipoDesarrollo = listaEquipo.Last()
+
+                }
+                ) ;
+            }
+
+
+            return listaPlanGrupal;
         }
 
         // GET: api/PlanGrupal/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PlanGrupal>> GetPlanGrupal(long id)
+        public PlanGrupal GetPlanGrupal(long id)
         {
-            var planGrupal = await _context.PlanGrupal.FindAsync(id);
+            listaEquipo = new LinkedList<EquipoDesarrollo>();
 
-            if (planGrupal == null)
+            _context.ChangeTracker.LazyLoadingEnabled = false;
+
+            var planGrupalBd = _context.PlanGrupal
+          .SingleOrDefault(b => b.PlanGrupalId == id);
+
+
+            if (planGrupalBd == null)
             {
-                return NotFound();
+                return null;
             }
 
-            return planGrupal;
+            foreach (var item in _context.PlanGrupal.ToList())
+            {
+                if (planGrupalBd.EquipoDesarrolloId == item.EquipoDesarrolloId)
+                {
+                    listaEquipo.AddLast(new EquipoDesarrollo
+                    {
+                        EquipoDesarrolloId = item.EquipoDesarrolloId,
+                        Nombre = item.Nombre
+                    });
+                }
+
+            }
+
+            planGrupalBd.EquipoDesarrollo = listaEquipo.First();
+
+            return planGrupalBd;
         }
 
         // PUT: api/PlanGrupal/5
