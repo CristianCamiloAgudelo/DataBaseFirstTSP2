@@ -11,8 +11,9 @@ namespace DataBaseFirstTSP2.Controllers
     [ApiController]
     public class PlanGrupalController : ControllerBase
     {
-        LinkedList<EquipoDesarrollo> listaEquipo;
-        LinkedList<PlanGrupal> listaPlanGrupal;
+        private LinkedList<EquipoDesarrollo> listaEquipo;
+        private LinkedList<PlanGrupal> listaPlanGrupal;
+        private LinkedList<Tarea> listaTareas;
 
         private readonly DataBaseFirstTSP2Context _context;
 
@@ -27,11 +28,13 @@ namespace DataBaseFirstTSP2.Controllers
         {
             listaEquipo = new LinkedList<EquipoDesarrollo>();
             listaPlanGrupal = new LinkedList<PlanGrupal>();
+            listaTareas = new LinkedList<Tarea>();
 
             _context.ChangeTracker.LazyLoadingEnabled = false;
 
             var listaPlanGrupalBd = _context.PlanGrupal.ToList();
             var listaEquipoDb = _context.EquipoDesarrollo.ToList();
+            var listaTareasDb = _context.Tarea.ToList();
 
             foreach (var plan in listaPlanGrupalBd)
             {
@@ -46,15 +49,39 @@ namespace DataBaseFirstTSP2.Controllers
                         });
                     }
                 }
+
+                foreach (var tarea in listaTareasDb)
+                {
+                    if (plan.PlanGrupalId == tarea.PlanGrupalId)
+                    {
+                        listaTareas.AddLast(new Tarea
+                        {
+                            TareaId = tarea.TareaId,
+                            Nombre = tarea.Nombre,
+                            MinutosLiderProyectoReales = tarea.MinutosLiderProyectoReales,
+                            MinutosLiderPlaneacionReales = tarea.MinutosLiderPlaneacionReales,
+                            MinutosLiderSoporteReales = tarea.MinutosLiderSoporteReales,
+                            MinutosLiderCalidadReales = tarea.MinutosLiderCalidadReales,
+                            MinutosLiderDesarrolloReales = tarea.MinutosLiderDesarrolloReales,
+                            ValorGanado = tarea.ValorGanado,
+                            MinutosTotalesReales = tarea.MinutosTotalesReales,
+                            PlanGrupalId = tarea.PlanGrupalId,
+                            PlanIndividualId = tarea.PlanIndividualId
+
+                        }
+                            );
+                    }
+                }
                 listaPlanGrupal.AddLast(new PlanGrupal
                 {
                     PlanGrupalId = plan.PlanGrupalId,
                     Nombre = plan.Nombre,
                     EquipoDesarrolloId = plan.EquipoDesarrolloId,
-                    EquipoDesarrollo = listaEquipo.Last()
+                    EquipoDesarrollo = listaEquipo.Last(),
+                    Tarea = listaTareas
 
                 }
-                ) ;
+                );
             }
 
 
@@ -66,6 +93,7 @@ namespace DataBaseFirstTSP2.Controllers
         public PlanGrupal GetPlanGrupal(long id)
         {
             listaEquipo = new LinkedList<EquipoDesarrollo>();
+            listaTareas = new LinkedList<Tarea>();
 
             _context.ChangeTracker.LazyLoadingEnabled = false;
 
@@ -89,9 +117,33 @@ namespace DataBaseFirstTSP2.Controllers
                     });
                 }
 
+                foreach (var tarea in _context.Tarea.ToList())
+                {
+                    if (item.PlanGrupalId == tarea.PlanGrupalId)
+                    {
+                        listaTareas.AddLast(new Tarea
+                        {
+                            TareaId = tarea.TareaId,
+                            Nombre = tarea.Nombre,
+                            MinutosLiderProyectoReales = tarea.MinutosLiderProyectoReales,
+                            MinutosLiderPlaneacionReales = tarea.MinutosLiderPlaneacionReales,
+                            MinutosLiderSoporteReales = tarea.MinutosLiderSoporteReales,
+                            MinutosLiderCalidadReales = tarea.MinutosLiderCalidadReales,
+                            MinutosLiderDesarrolloReales = tarea.MinutosLiderDesarrolloReales,
+                            ValorGanado = tarea.ValorGanado,
+                            MinutosTotalesReales = tarea.MinutosTotalesReales,
+                            PlanGrupalId = tarea.PlanGrupalId,
+                            PlanIndividualId = tarea.PlanIndividualId
+
+                        }
+                            );
+                    }
+                }
+
             }
 
             planGrupalBd.EquipoDesarrollo = listaEquipo.First();
+            planGrupalBd.Tarea = listaTareas;
 
             return planGrupalBd;
         }
