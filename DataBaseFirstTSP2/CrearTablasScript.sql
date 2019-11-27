@@ -85,7 +85,8 @@ VALUES
 ('Cristian Camilo','Agudelo','Universidad de Caldas','1111111','Estudiante',1),
 ('Sebastian','Grajales','Universidad de Caldas','222222','Estudiante',1),
 ('Lorenzo','Zuluaga','Universidad de Caldas','333333','Estudiante',1),
-('Yerson','Blandito','Universidad de Caldas','444444','Estudiante',1)
+('Yerson','Blandito','Universidad de Caldas','444444','Estudiante',1),
+('Felipe','El Loco','Universidad de Caldas','555555','Estudiante',1)
 
 INSERT INTO PlanGrupal
 VALUES
@@ -96,7 +97,8 @@ VALUES
 ('Plan Individual Lider Planeacion',1),
 ('Plan Individual Lider Desarrollo',2),
 ('Plan Individual Lider Calidad',3),
-('Plan Individual Lider Soporte',4)
+('Plan Individual Lider Soporte',4),
+('Plan Individual Lider Proyecto',5)
 
 GO
 INSERT INTO Tarea

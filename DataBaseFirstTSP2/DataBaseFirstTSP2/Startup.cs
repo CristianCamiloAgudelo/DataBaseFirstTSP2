@@ -28,7 +28,7 @@ namespace DataBaseFirstTSP2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataBaseFirstTSP2Context>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ConexionTest")));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
         }
 
