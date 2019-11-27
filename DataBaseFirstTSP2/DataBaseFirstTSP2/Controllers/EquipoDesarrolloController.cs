@@ -96,9 +96,10 @@ namespace DataBaseFirstTSP2.Controllers
         public async Task<ActionResult<EquipoDesarrollo>> PostEquipoDesarrollo(EquipoDesarrollo equipoDesarrollo)
         {
             _context.EquipoDesarrollo.Add(equipoDesarrollo);
-            await _context.SaveChangesAsync();
+            await  _context.SaveChangesAsync();
 
             return CreatedAtAction("GetEquipoDesarrollo", new { id = equipoDesarrollo.EquipoDesarrolloId }, equipoDesarrollo);
+
         }
 
         // DELETE: api/EquipoDesarrollo/5

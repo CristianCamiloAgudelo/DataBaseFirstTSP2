@@ -14,6 +14,7 @@ namespace DataBaseFirstTSP2.Controllers
         private readonly DataBaseFirstTSP2Context _context;
         private LinkedList<Usuario> listUser;
         private LinkedList<EquipoDesarrollo> listEquipo;
+        private LinkedList<PlanIndividual> listaPlanIndividual;
 
         public UsuariosController(DataBaseFirstTSP2Context context)
         {
@@ -28,8 +29,11 @@ namespace DataBaseFirstTSP2.Controllers
 
             listUser = new LinkedList<Usuario>();
             listEquipo = new LinkedList<EquipoDesarrollo>();
+            listaPlanIndividual = new LinkedList<PlanIndividual>();
+
             var listUserDb = _context.Usuario.ToList();
             var listaEquipoDb = _context.EquipoDesarrollo.ToList();
+            var listaIndividualDb = _context.PlanIndividual.ToList();
 
             foreach (var user in listUserDb)
             {
