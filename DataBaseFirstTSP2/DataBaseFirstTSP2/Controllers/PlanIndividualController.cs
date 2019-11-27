@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DataBaseFirstTSP2.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DataBaseFirstTSP2.Models;
 
 namespace DataBaseFirstTSP2.Controllers
 {
@@ -13,6 +11,9 @@ namespace DataBaseFirstTSP2.Controllers
     [ApiController]
     public class PlanIndividualController : ControllerBase
     {
+        private LinkedList<Usuario> listaUsuario;
+        private LinkedList<PlanIndividual> listaIndividual;
+
         private readonly DataBaseFirstTSP2Context _context;
 
         public PlanIndividualController(DataBaseFirstTSP2Context context)
@@ -22,23 +23,97 @@ namespace DataBaseFirstTSP2.Controllers
 
         // GET: api/PlanIndividual
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PlanIndividual>>> GetPlanIndividual()
+        public LinkedList<PlanIndividual> GetPlanIndividual()
         {
-            return await _context.PlanIndividual.ToListAsync();
+            listaIndividual = new LinkedList<PlanIndividual>();
+            listaUsuario = new LinkedList<Usuario>();
+
+            var listaIndividualBd = _context.PlanIndividual.ToList();
+            var listaUsuarioBd = _context.Usuario.ToList();
+
+            foreach (var plan in listaIndividualBd)
+            {
+                foreach (var user in listaUsuarioBd)
+                {
+                    if (plan.UsuarioId == user.UsuarioId)
+                    {
+                        listaUsuario.AddLast(new Usuario
+                        {
+                            UsuarioId = user.UsuarioId,
+                            Nombre = user.Nombre,
+                            Apellido = user.Apellido,
+                            Universidad = user.Universidad,
+                            Codigo = user.Codigo,
+                            Rol = user.Rol,
+                            EquipoDesarrolloId = user.EquipoDesarrolloId
+                        });
+                    }
+                    
+                }
+                listaIndividual.AddLast(new PlanIndividual
+                {
+                    PlanIndividualId = plan.PlanIndividualId,
+                    Nombre = plan.Nombre,
+                    UsuarioId = plan.UsuarioId,
+                    Usuario = listaUsuario.Last()
+                });
+            }
+
+            return listaIndividual;
         }
 
         // GET: api/PlanIndividual/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PlanIndividual>> GetPlanIndividual(long id)
+        public PlanIndividual GetPlanIndividual(long id)
         {
-            var planIndividual = await _context.PlanIndividual.FindAsync(id);
+            listaIndividual = new LinkedList<PlanIndividual>();
+            
 
-            if (planIndividual == null)
+            _context.ChangeTracker.LazyLoadingEnabled = false;
+
+            var planIndividualBd = _context.PlanIndividual
+          .SingleOrDefault(b => b.PlanIndividualId == id);
+
+            var usuarioBd = _context.Usuario.ToList();
+
+            if (planIndividualBd == null)
             {
-                return NotFound();
+                return null;
             }
 
-            return planIndividual;
+            foreach (var plan in _context.PlanIndividual)
+            {
+                foreach (var user in usuarioBd)
+                {
+                    if (planIndividualBd.UsuarioId == user.UsuarioId)
+                    {
+                        listaUsuario = new LinkedList<Usuario>();
+                        listaUsuario.AddLast(new Usuario
+                        {
+                            UsuarioId = user.UsuarioId,
+                            Nombre = user.Nombre,
+                            Apellido = user.Apellido,
+                            Universidad = user.Universidad,
+                            Codigo = user.Codigo,
+                            Rol = user.Rol,
+                            EquipoDesarrolloId = user.EquipoDesarrolloId,
+
+                        });
+                    }
+                }
+                if (plan.PlanIndividualId == planIndividualBd.PlanIndividualId)
+                {
+                    listaIndividual.AddLast(new PlanIndividual
+                    {
+                        PlanIndividualId = plan.PlanIndividualId,
+                        Nombre = plan.Nombre,
+                        UsuarioId = plan.UsuarioId,
+                        Usuario = listaUsuario.First()
+                    });
+                }
+            }
+
+            return listaIndividual.Last();
         }
 
         // PUT: api/PlanIndividual/5
