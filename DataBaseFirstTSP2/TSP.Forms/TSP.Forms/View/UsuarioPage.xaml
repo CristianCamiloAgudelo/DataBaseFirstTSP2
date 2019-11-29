@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TSP.Forms.View.UsuarioPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Text="Tu Perfil" HorizontalOptions="Center" FontSize="Large"/>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding UsuarioColleccion}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="15,10,15,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                            <Label Text="{Binding Nombre}" FontSize="Medium"/>
+
+                            <Label Text="{Binding Apellido}" FontSize="Medium"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                            <Label Text="Codigo: "/>
+                            <Label Text="{Binding Codigo}"/>
+                        </StackLayout>
+                        
+                        <Label Text="{Binding Rol}" Grid.Row="2" Grid.Column="1"/>
+                        <Label Text="{Binding Universidad}" Grid.Row="3" Grid.Column="1"/>
+                        
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>
