@@ -11,6 +11,8 @@
             SelectedTabColor="#00dc99">
 
     <views:PlanGrupalPage Icon="Plan.png"/>
-    <views:EmployeePage Icon="Perfil.png"/>
+    <views:UsuarioPage Icon="Perfil.png"/>
+    
+    
 
 </TabbedPage>

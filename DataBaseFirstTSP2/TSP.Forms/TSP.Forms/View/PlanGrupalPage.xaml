@@ -2,13 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TSP.Forms.View.PlanGrupalPage">
-    
-    <StackLayout Padding="0" Spacing="0">
-        <Label Margin="0,0,0,0" FontSize="Large" Text="{Binding NombreEquipo}" TextColor="Blue" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-        <Frame BorderColor="DarkSlateGray" Padding="0">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Text="{Binding NombreEquipo}" HorizontalOptions="Center" FontSize="Large"/>
+
+        <Frame BorderColor="DarkSlateGray" Padding="0" Grid.Row="1">
             <Grid Padding="0" HorizontalOptions="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="1.5*"/>
@@ -18,17 +25,20 @@
                     <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="1.5*"/>
                 </Grid.ColumnDefinitions>
-                
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Nombre" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Min Lider " VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Min Planeacion" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Min Soporte" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Min Calidad" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4"/>
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Min Desarrollo" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="5"/>
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Min Total" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="6"/>
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Valor Ganado" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="7"/>
-                <Label  Margin="10,0,10,0" FontSize="Small" Text="Semana Terminacion" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="8"/>
-                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Nombre" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Min Lider " VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Min Planeacion" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Min Soporte" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Min Calidad" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4"/>
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Min Desarrollo" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="5"/>
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Min Total" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="6"/>
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Valor Ganado" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="7"/>
+                <Label  Margin="0,0,0,0" FontSize="Micro" Text="Semana Terminacion" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="8"/>
+
                 <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="0"  HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                 <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="1"  HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
                 <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2"  HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
@@ -41,42 +51,50 @@
 
             </Grid>
         </Frame>
-        <ListView ItemsSource="{Binding TareasColleccion}"  SeparatorVisibility="None" SelectionMode="None">
-            <ListView.ItemTemplate>
+
+        <CollectionView ItemsSource="{Binding TareasColleccion}" Grid.Row="2">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Frame Padding="0">
-                            <Grid Padding="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding Nombre}" VerticalOptions="Center" Grid.Column="0"/>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderProyectoReales}" VerticalOptions="Center" Grid.Column="1"/>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderPlaneacionReales}" VerticalOptions="Center" Grid.Column="2"/>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderSoporteReales}" VerticalOptions="Center" Grid.Column="3"/>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderCalidadReales}" VerticalOptions="Center" Grid.Column="4"/>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderDesarrolloReales}" VerticalOptions="Center" Grid.Column="5"/>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosTotalesReales}" VerticalOptions="Center" Grid.Column="6"/>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding ValorGanado}" VerticalOptions="Center" Grid.Column="7"/>
-                                <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding SemanaTerminacionReal}" VerticalOptions="Center" Grid.Column="8"/>
+                    <Grid Padding="0" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
 
-                                <BoxView  BackgroundColor="DarkSlateGray" HeightRequest="1" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView  BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="6" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="7" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="8" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding Nombre}" VerticalOptions="Center" Grid.Column="0"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderProyectoReales}" VerticalOptions="Center" Grid.Column="1"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderPlaneacionReales}" VerticalOptions="Center" Grid.Column="2"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderSoporteReales}" VerticalOptions="Center" Grid.Column="3"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderCalidadReales}" VerticalOptions="Center" Grid.Column="4"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosLiderDesarrolloReales}" VerticalOptions="Center" Grid.Column="5"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding MinutosTotalesReales}" VerticalOptions="Center" Grid.Column="6"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding ValorGanado}" VerticalOptions="Center" Grid.Column="7"/>
+                        <Label Margin="10,0,10,0" FontSize="Micro" Text="{Binding SemanaTerminacionReal}" VerticalOptions="Center" Grid.Column="8"/>
 
-                            </Grid>
-                        </Frame>
-                    </ViewCell>
+                        <BoxView  BackgroundColor="DarkSlateGray" HeightRequest="1" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView  BackgroundColor="DarkSlateGray"  WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="6" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="7" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                        <BoxView  BackgroundColor="DarkSlateGray" WidthRequest="1" Grid.Column="8" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+
+                    </Grid>
+                    
+                    
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        
-    </StackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    
+    </Grid>
+    
 </ContentPage>

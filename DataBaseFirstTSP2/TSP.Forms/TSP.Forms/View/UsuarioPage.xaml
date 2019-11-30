@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TSP.Forms.View.UsuarioPage">
+    
 
     <Grid>
         <Grid.RowDefinitions>
@@ -26,6 +27,13 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
+                        <Frame HasShadow="False" Grid.RowSpan="4" IsClippedToBounds="True"
+                               Margin="20" CornerRadius="25" Padding="0">
+                            <Image Source="{Binding FotoPerfil}" Grid.RowSpan="3"
+                                   HeightRequest="40" WidthRequest="40"/>
+
+                        </Frame>
+                        
                         <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                             <Label Text="{Binding Nombre}" FontSize="Medium"/>
 

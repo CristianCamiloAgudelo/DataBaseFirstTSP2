@@ -7,11 +7,11 @@ using TSP.Forms.Model;
 
 namespace TSP.Forms.ViewModel
 {
-    internal class UsuarioListViewModel : INotifyPropertyChanged
+    internal class UsuarioPruebaListViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Usuario> UsuarioColleccion { get; set; }
 
-        public UsuarioListViewModel()
+        public UsuarioPruebaListViewModel()
         {
             GetUsuarioApi();
         }
@@ -31,7 +31,7 @@ namespace TSP.Forms.ViewModel
                     Apellido = usuarioJson.Apellido,
                     Rol = usuarioJson.Rol,
                     Universidad = usuarioJson.Universidad,
-                    FotoPerfil = "perfilYer.png"
+                    FotoPerfil = "Yer.jpeg"
                 }
 
 
