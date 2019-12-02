@@ -10,8 +10,10 @@ namespace TSP.Forms.ViewModel
     internal class PlanGrupalListViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<PlanGrupal> PlanGrupalColleccion2 { get; set; }
+        public ObservableCollection<EquipoDesarrollo> EquipoDesarrolloColleccion { get; set; }
         public ObservableCollection<Tarea> TareasColleccion { get; set; }
 
+        public string NombrePlanGrupal { get; set; }
         public string NombreEquipo { get; set; }
 
 
@@ -37,13 +39,31 @@ namespace TSP.Forms.ViewModel
             var json = new WebClient().DownloadString("https://databasefirsttsp2.azurewebsites.net/api/plangrupal/1");
             var plangrupals = JsonConvert.DeserializeObject<PlanGrupal>(json);
 
-            NombreEquipo = plangrupals.Nombre;
+            var json2 = new WebClient().DownloadString("https://databasefirsttsp2.azurewebsites.net/api/EquipoDesarrollo/1");
+            var equipoDesarrollo = JsonConvert.DeserializeObject<EquipoDesarrollo>(json2);
+
+            if (equipoDesarrollo.EquipoDesarrolloId == plangrupals.EquipoDesarrolloId)
+            {
+                NombrePlanGrupal = plangrupals.Nombre;
+                NombreEquipo = equipoDesarrollo.Nombre;
+            }
+            
+
 
             PlanGrupalColleccion2 = new ObservableCollection<PlanGrupal>()
             {
                 new PlanGrupal(){Nombre = plangrupals.Nombre,
                     EquipoDesarrolloId = plangrupals.EquipoDesarrolloId,
                     Tarea = plangrupals.Tarea
+                }
+
+
+            };
+            EquipoDesarrolloColleccion = new ObservableCollection<EquipoDesarrollo>()
+            {
+                new EquipoDesarrollo(){
+                    EquipoDesarrolloId = equipoDesarrollo.EquipoDesarrolloId,
+                    Nombre = equipoDesarrollo.Nombre
                 }
 
 

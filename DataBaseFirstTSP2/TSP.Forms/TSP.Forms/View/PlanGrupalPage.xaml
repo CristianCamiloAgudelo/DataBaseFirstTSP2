@@ -10,7 +10,17 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Text="{Binding NombreEquipo}" HorizontalOptions="Center" FontSize="Large"/>
+        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+            <Label Text="Nombre Equipo: " FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <Label Grid.Row="0" Text="{Binding NombreEquipo}" FontSize="Micro" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+            <Label Text=" Nombre Plan Grupal: " FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <Label Grid.Row="0" Text="{Binding NombrePlanGrupal}" FontSize="Micro" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+       
 
         <Frame BorderColor="DarkSlateGray" Padding="0" Grid.Row="1">
             <Grid Padding="0" HorizontalOptions="Center">

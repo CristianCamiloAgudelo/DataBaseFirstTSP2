@@ -1,4 +1,5 @@
 ﻿using System;
+using TSP.Forms.View;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace TSP.Forms
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()
