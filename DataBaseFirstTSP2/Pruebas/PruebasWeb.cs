@@ -35,6 +35,7 @@ namespace Pruebas
         {
             var httpClient = new HttpClient();
             string requestUri = "https://databasefirsttsp3.azurewebsites.net/api/equipoDesarrollo/A";
+
             var json = httpClient.GetAsync(requestUri).Result;
             Assert.AreEqual(HttpStatusCode.BadRequest, json.StatusCode);
         }
