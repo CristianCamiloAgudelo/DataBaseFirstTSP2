@@ -27,7 +27,7 @@ namespace TSP.Forms.ViewModel
         //{
         //    var HttpCliente = new HttpClient();
 
-        //    HttpResponseMessage PlanGrupalJson = HttpCliente.GetAsync("https://databasefirsttsp2.azurewebsites.net/api/PlanIndividual/1").Result;
+        //    HttpResponseMessage PlanGrupalJson = HttpCliente.GetAsync("https://databasefirsttsp3.azurewebsites.net/api/PlanIndividual/1").Result;
         //    var apiResponse = await PlanGrupalJson.Content.ReadAsStringAsync();
         //    var PlanGrupalConvertido = JsonConvert.DeserializeObject<PlanGrupal>(apiResponse);
         //    return PlanGrupalConvertido;
@@ -36,10 +36,10 @@ namespace TSP.Forms.ViewModel
         public void GetPlanGrupalApi()
         {
 
-            var json = new WebClient().DownloadString("https://databasefirsttsp2.azurewebsites.net/api/plangrupal/1");
+            var json = new WebClient().DownloadString("https://databasefirsttsp3.azurewebsites.net/api/plangrupal/1");
             var plangrupals = JsonConvert.DeserializeObject<PlanGrupal>(json);
 
-            var json2 = new WebClient().DownloadString("https://databasefirsttsp2.azurewebsites.net/api/EquipoDesarrollo/1");
+            var json2 = new WebClient().DownloadString("https://databasefirsttsp3.azurewebsites.net/api/EquipoDesarrollo/1");
             var equipoDesarrollo = JsonConvert.DeserializeObject<EquipoDesarrollo>(json2);
 
             if (equipoDesarrollo.EquipoDesarrolloId == plangrupals.EquipoDesarrolloId)
