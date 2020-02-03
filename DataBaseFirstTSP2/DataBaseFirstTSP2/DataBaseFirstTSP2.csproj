@@ -27,4 +27,6 @@
     <Folder Include="Entities\" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="http://json.schemastore.org/launchsettings" /></VisualStudio></ProjectExtensions>
+
 </Project>
