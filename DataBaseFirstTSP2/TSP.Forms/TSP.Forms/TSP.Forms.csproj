@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="View\PlanGrupalPageNoContent.xaml.cs">
+      <DependentUpon>PlanGrupalPageNoContent.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\UsuarioPagePrueba.xaml.cs">
       <DependentUpon>UsuarioPagePrueba.xaml</DependentUpon>
     </Compile>

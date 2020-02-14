@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using TSP.Forms.Model;
 
@@ -38,6 +39,16 @@ namespace Pruebas
             Assert.AreEqual(nombreEsperado, nombreReal);
         }
 
-        
+        [Test]
+        public void TestConsultarPlanGrupalNoExistente()
+        {
+            var httpClient = new HttpClient();
+            string requestUri = "https://databasefirsttsp3.azurewebsites.net/api/plangrupal/5";
+            var json = httpClient.GetAsync(requestUri).Result;
+            Assert.AreEqual(HttpStatusCode.NoContent, json.StatusCode);
+
+        }
+
+
     }
 }

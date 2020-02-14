@@ -58,15 +58,26 @@ namespace DataBaseFirstTSP2.Controllers
                         {
                             TareaId = tarea.TareaId,
                             Nombre = tarea.Nombre,
+                            MinutosLiderProyectoPlaneado = tarea.MinutosLiderProyectoPlaneado,
+                            MinutosLiderPlaneacionPlaneado = tarea.MinutosLiderPlaneacionPlaneado,
+                            MinutosLiderDesarrolloPlaneado = tarea.MinutosLiderDesarrolloPlaneado,
+                            MinutosLiderCalidadPlaneado = tarea.MinutosLiderCalidadPlaneado,
+                            MinutosLiderSoportePlaneado = tarea.MinutosLiderSoportePlaneado,
+
                             MinutosLiderProyectoReales = tarea.MinutosLiderProyectoReales,
                             MinutosLiderPlaneacionReales = tarea.MinutosLiderPlaneacionReales,
                             MinutosLiderSoporteReales = tarea.MinutosLiderSoporteReales,
                             MinutosLiderCalidadReales = tarea.MinutosLiderCalidadReales,
                             MinutosLiderDesarrolloReales = tarea.MinutosLiderDesarrolloReales,
+
+                            ValorPlaneado = tarea.ValorPlaneado,
                             ValorGanado = tarea.ValorGanado,
+                            MinutosTotalesPlaneados = tarea.MinutosTotalesPlaneados,
                             MinutosTotalesReales = tarea.MinutosTotalesReales,
                             PlanGrupalId = tarea.PlanGrupalId,
-                            PlanIndividualId = tarea.PlanIndividualId
+                            PlanIndividualId = tarea.PlanIndividualId,
+                            SemanaTerminacionPlaneada = tarea.SemanaTerminacionPlaneada
+
 
                         }
                             );
@@ -125,15 +136,25 @@ namespace DataBaseFirstTSP2.Controllers
                         {
                             TareaId = tarea.TareaId,
                             Nombre = tarea.Nombre,
+                            MinutosLiderProyectoPlaneado = tarea.MinutosLiderProyectoPlaneado,
+                            MinutosLiderPlaneacionPlaneado = tarea.MinutosLiderPlaneacionPlaneado,
+                            MinutosLiderDesarrolloPlaneado = tarea.MinutosLiderDesarrolloPlaneado,
+                            MinutosLiderCalidadPlaneado = tarea.MinutosLiderCalidadPlaneado,
+                            MinutosLiderSoportePlaneado = tarea.MinutosLiderSoportePlaneado,
+
                             MinutosLiderProyectoReales = tarea.MinutosLiderProyectoReales,
                             MinutosLiderPlaneacionReales = tarea.MinutosLiderPlaneacionReales,
                             MinutosLiderSoporteReales = tarea.MinutosLiderSoporteReales,
                             MinutosLiderCalidadReales = tarea.MinutosLiderCalidadReales,
                             MinutosLiderDesarrolloReales = tarea.MinutosLiderDesarrolloReales,
+
+                            ValorPlaneado = tarea.ValorPlaneado,
                             ValorGanado = tarea.ValorGanado,
+                            MinutosTotalesPlaneados = tarea.MinutosTotalesPlaneados,
                             MinutosTotalesReales = tarea.MinutosTotalesReales,
                             PlanGrupalId = tarea.PlanGrupalId,
-                            PlanIndividualId = tarea.PlanIndividualId
+                            PlanIndividualId = tarea.PlanIndividualId,
+                            SemanaTerminacionPlaneada = tarea.SemanaTerminacionPlaneada
 
                         }
                             );
