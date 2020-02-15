@@ -6,10 +6,8 @@ using TSP.Forms.Model;
 
 namespace TSP.Forms.ViewModel
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel 
     {
         public List<Conversation> Messages { get; set; } = Conversations.All;
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
