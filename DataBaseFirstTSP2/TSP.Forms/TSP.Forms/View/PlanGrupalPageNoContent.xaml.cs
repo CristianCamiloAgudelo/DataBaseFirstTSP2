@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace TSP.Forms.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlanGrupalPage : ContentPage
+    public partial class PlanGrupalPageNoContent : ContentPage
     {
-        public PlanGrupalPage()
+        public PlanGrupalPageNoContent()
         {
             InitializeComponent();
             BindingContext = new PlanGrupalListViewModel();

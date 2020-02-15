@@ -5,7 +5,7 @@ using System.Net.Http;
 
 namespace Pruebas
 {
-    public class Tests
+    public class TestWebService
     {
         [SetUp]
         public void Setup()
