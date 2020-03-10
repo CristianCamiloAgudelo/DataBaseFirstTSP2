@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "844596118655",
+    "firebase_url": "https://tspengennering-5a1ac.firebaseio.com",
+    "project_id": "tspengennering-5a1ac",
+    "storage_bucket": "tspengennering-5a1ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844596118655:android:bd10b9757607d247b4ab4a",
+        "android_client_info": {
+          "package_name": "com.companyname.tsp.forms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844596118655-3ue34ltkuc6ajhmiqk2c1sqe7tqko1th.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiWWtL3jZT1GGKnTy5XnUAxYOoouM6_oA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844596118655-3ue34ltkuc6ajhmiqk2c1sqe7tqko1th.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
