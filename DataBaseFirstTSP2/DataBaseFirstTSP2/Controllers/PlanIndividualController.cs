@@ -15,6 +15,9 @@ namespace DataBaseFirstTSP2.Controllers
     {
         private readonly DataBaseFirstTSP2Context _context;
 
+        private LinkedList<PlanGrupal> listaPlanIndividual;
+        private LinkedList<Tarea> listaTareas;
+
         public PlanIndividualController(DataBaseFirstTSP2Context context)
         {
             _context = context;
@@ -29,16 +32,61 @@ namespace DataBaseFirstTSP2.Controllers
 
         // GET: api/PlanIndividual/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PlanIndividual>> GetPlanIndividual(long id)
+        public PlanIndividual GetPlanIndividual(long id)
         {
-            var planIndividual = await _context.PlanIndividual.FindAsync(id);
+            listaTareas = new LinkedList<Tarea>();
 
-            if (planIndividual == null)
+            _context.ChangeTracker.LazyLoadingEnabled = false;
+
+            var planIndividualBd = _context.PlanIndividual
+          .SingleOrDefault(b => b.PlanIndividualId == id);
+
+
+            if (planIndividualBd == null)
             {
-                return NotFound();
+                return null;
             }
 
-            return planIndividual;
+            foreach (var item in _context.PlanIndividual.ToList())
+            {
+                foreach (var tarea in _context.Tarea.ToList())
+                {
+                    if (item.PlanIndividualId == tarea.PlanIndividualId)
+                    {
+                        listaTareas.AddLast(new Tarea
+                        {
+                            TareaId = tarea.TareaId,
+                            Nombre = tarea.Nombre,
+                            MinutosLiderProyectoPlaneado = tarea.MinutosLiderProyectoPlaneado,
+                            MinutosLiderPlaneacionPlaneado = tarea.MinutosLiderPlaneacionPlaneado,
+                            MinutosLiderDesarrolloPlaneado = tarea.MinutosLiderDesarrolloPlaneado,
+                            MinutosLiderCalidadPlaneado = tarea.MinutosLiderCalidadPlaneado,
+                            MinutosLiderSoportePlaneado = tarea.MinutosLiderSoportePlaneado,
+
+                            MinutosLiderProyectoReales = tarea.MinutosLiderProyectoReales,
+                            MinutosLiderPlaneacionReales = tarea.MinutosLiderPlaneacionReales,
+                            MinutosLiderSoporteReales = tarea.MinutosLiderSoporteReales,
+                            MinutosLiderCalidadReales = tarea.MinutosLiderCalidadReales,
+                            MinutosLiderDesarrolloReales = tarea.MinutosLiderDesarrolloReales,
+
+                            ValorPlaneado = tarea.ValorPlaneado,
+                            ValorGanado = tarea.ValorGanado,
+                            MinutosTotalesPlaneados = tarea.MinutosTotalesPlaneados,
+                            MinutosTotalesReales = tarea.MinutosTotalesReales,
+                            PlanGrupalId = tarea.PlanGrupalId,
+                            PlanIndividualId = tarea.PlanIndividualId,
+                            SemanaTerminacionPlaneada = tarea.SemanaTerminacionPlaneada
+
+                        }
+                            );
+                    }
+                }
+
+            }
+
+            planIndividualBd.Tarea = listaTareas;
+
+            return planIndividualBd;
         }
 
         // PUT: api/PlanIndividual/5
