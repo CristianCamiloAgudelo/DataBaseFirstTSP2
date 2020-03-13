@@ -11,6 +11,7 @@
             SelectedTabColor="#00dc99">
 
     <views:PlanGrupalPage Icon="Plan.png"/>
+    <views:IdMovil Icon="Plan.png"/>
     <views:UsuarioPage Icon="Perfil.png"/>
     
     
