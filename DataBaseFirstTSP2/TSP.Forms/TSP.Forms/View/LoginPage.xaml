@@ -10,7 +10,7 @@
             <Label Text="¡ Ingresa a Tu TSP Engennering !" FontSize="Large" />
             <Entry Text="{Binding correoElectronico, Mode=TwoWay}" Placeholder="Correo Electrinico"/>
             <Entry Text="{Binding contraseña, Mode=TwoWay}" Placeholder="Contraseña"/>
-            <Button Text="Ingresar" Command="{Binding LoginCommand}" BackgroundColor="Blue" TextColor="White"/>
+            <Button x:Name="login" Text="Ingresar" Command="{Binding LoginCommand}" BackgroundColor="Blue" TextColor="White"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
