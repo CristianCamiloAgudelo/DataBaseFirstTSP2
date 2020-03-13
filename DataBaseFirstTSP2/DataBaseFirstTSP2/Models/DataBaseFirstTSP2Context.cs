@@ -12,6 +12,7 @@ namespace DataBaseFirstTSP2.Models
 
         public DataBaseFirstTSP2Context(DbContextOptions<DataBaseFirstTSP2Context> options)
             : base(options)
+
         {
         }
 
