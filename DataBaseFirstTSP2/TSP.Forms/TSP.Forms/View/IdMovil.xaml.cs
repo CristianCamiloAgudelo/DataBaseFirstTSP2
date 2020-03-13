@@ -17,7 +17,7 @@ namespace TSP.Forms.View
             InitializeComponent();
         }
 
-        public void ShowPlayerI()
+        public void ShowPlayerId()
         {
 
         }

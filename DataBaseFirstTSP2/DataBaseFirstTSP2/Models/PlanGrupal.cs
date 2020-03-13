@@ -16,6 +16,7 @@ namespace DataBaseFirstTSP2.Models
         public string Nombre { get; set; }
         public long EquipoDesarrolloId { get; set; }
 
+        public DateTime fechaDeInicio { get; set; }
         public virtual EquipoDesarrollo EquipoDesarrollo { get; set; }
         public virtual ICollection<Tarea> Tarea { get; set; }
     }

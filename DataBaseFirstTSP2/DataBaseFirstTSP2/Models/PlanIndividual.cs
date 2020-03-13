@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace DataBaseFirstTSP2.Models
 {
+    [DataContract(IsReference = true)]
     public partial class PlanIndividual
     {
         public PlanIndividual()
