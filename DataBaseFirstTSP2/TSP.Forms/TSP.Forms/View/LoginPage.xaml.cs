@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.LocalNotifications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,13 @@ namespace TSP.Forms.View
         public LoginPage()
         {
             InitializeComponent();
+            login.Clicked += login_Clicked;
             BindingContext = new LoginListViewModel();
+        }
+
+        void login_Clicked(object sender, EventArgs e)
+        {
+            CrossLocalNotifications.Current.Show("Registro Exitoso", "Ahora puedes ingresar con tu correo y tu contraseña", 0, DateTime.Now.AddSeconds(7));
         }
     }
 }
