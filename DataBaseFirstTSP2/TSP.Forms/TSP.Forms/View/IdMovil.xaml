@@ -4,12 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="TSP.Forms.View.UserIdMovil">
+             x:Class="TSP.Forms.View.IdMovil">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
             <Label Text="Bienvenidos a Push Notification con OneSignal" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
-            <Button x:Name="showPlayerIdButton" Text="Mostrar Player Id" VerticalOptions="Center" HorizontalOptions="Center" Clicked="ShowPlayerIdHandler" />
-            <Label x:Name="playerIdLabel" Text="" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" />
+            <Button x:Name="showPlayerIdButton" Text="Mostrar Player Id" VerticalOptions="Center" HorizontalOptions="Center" Clicked="ShowPlayerId" />
             <Label x:Name="playerIdLabel" Text="" HorizontalTextAlignment="Center" VerticalOptions="Center" HorizontalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>
