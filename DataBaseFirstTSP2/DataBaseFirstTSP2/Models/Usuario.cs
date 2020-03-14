@@ -18,6 +18,8 @@ namespace DataBaseFirstTSP2.Models
         public string Universidad { get; set; }
         public string Codigo { get; set; }
         public string Rol { get; set; }
+        public string Correo { get; set; }
+        public string Contrasena { get; set; }
         public long EquipoDesarrolloId { get; set; }
 
         public virtual EquipoDesarrollo EquipoDesarrollo { get; set; }

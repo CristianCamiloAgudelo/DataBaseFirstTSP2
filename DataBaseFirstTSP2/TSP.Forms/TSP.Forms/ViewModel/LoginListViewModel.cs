@@ -1,6 +1,8 @@
 ﻿
 using System.Collections;
 using System.ComponentModel;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,7 +18,7 @@ namespace TSP.Forms.ViewModel
 
         public LoginListViewModel()
         {
-            LoginCommand = new Command(async () => await LoginUser());
+            LoginCommand = new Command(async () => await LoginUser().ConfigureAwait(false));
         }
 
 
@@ -55,7 +57,14 @@ namespace TSP.Forms.ViewModel
 
         private async Task LoginUser()
         {
-            await App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            var httpClient = new HttpClient();
+            string requestUri = "https://databasefirsttsp3.azurewebsites.net/api/PlanGrupal/1";
+            var json = httpClient.GetAsync(requestUri).Result;
+            if(json.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                await App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            }
+            
         }
 
 

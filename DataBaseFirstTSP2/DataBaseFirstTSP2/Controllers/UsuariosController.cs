@@ -99,7 +99,16 @@ namespace DataBaseFirstTSP2.Controllers
 
             return usuario;
         }
-
+        // Get: api/Usuarios/
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // more details see https://aka.ms/RazorPagesCRUD.
+        [HttpGet("{contraseña,correo}")]
+        public Usuario GetUsuario(string contraseña, string correo)
+        {
+            var usuario = _context.Usuario
+                .SingleOrDefault(b => b.Correo == correo && b.Contrasena == contraseña);
+            return usuario;
+        }
         // PUT: api/Usuarios/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
