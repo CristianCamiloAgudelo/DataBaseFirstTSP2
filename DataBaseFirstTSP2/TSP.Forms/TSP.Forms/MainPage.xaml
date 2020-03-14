@@ -12,7 +12,7 @@
 
     <views:PlanGrupalPage Icon="Plan.png"/>
     <views:UsuarioPage Icon="Perfil.png"/>
-    <views:Calendar Icon="Perfil.png"/>
+    <views:Calendar Icon="calendar.png"/>
     
     
 

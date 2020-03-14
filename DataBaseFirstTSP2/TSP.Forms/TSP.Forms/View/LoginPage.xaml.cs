@@ -23,7 +23,7 @@ namespace TSP.Forms.View
 
         void login_Clicked(object sender, EventArgs e)
         {
-            CrossLocalNotifications.Current.Show("Registro Exitoso", "Ahora puedes ingresar con tu correo y tu contraseña", 0, DateTime.Now.AddSeconds(2));
+            
         }
 
         private void ShowPlayerIdHandler(object sender, EventArgs e)
