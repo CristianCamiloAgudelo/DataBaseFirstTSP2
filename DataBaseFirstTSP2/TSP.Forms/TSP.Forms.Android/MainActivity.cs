@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace TSP.Forms.Droid
 {
-    [Activity(Label = "TSPEngennering", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "TSPEngennering", Icon = "@drawable/logoTSP", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
