@@ -8,9 +8,14 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
             <Label Text="¡ Ingresa a Tu TSP Engennering !" FontSize="Large" />
+            <Image Source="LogoTSP.png"></Image>
             <Entry Text="{Binding correoElectronico, Mode=TwoWay}" Placeholder="Correo Electrinico"/>
-            <Entry Text="{Binding contraseña, Mode=TwoWay}" Placeholder="Contraseña"/>
+            <Entry Text="{Binding contraseña, Mode=TwoWay}" Placeholder="Contraseña" IsPassword="True"/>
             <Button x:Name="login" Text="Ingresar" Command="{Binding LoginCommand}" BackgroundColor="Blue" TextColor="White"/>
         </StackLayout>
+        
+        
+        
     </ContentPage.Content>
+    
 </ContentPage>

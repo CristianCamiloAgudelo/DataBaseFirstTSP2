@@ -18,7 +18,8 @@ namespace TSP.Forms.ViewModel
 
         public LoginListViewModel()
         {
-            LoginCommand = new Command(async () => await LoginUser().ConfigureAwait(false));
+        //C:\MicrosoftVisualStudio\DataBaseFirstTSP2\DataBaseFirstTSP2\TSP.Forms\TSP.Forms\ViewModel\LoginListViewModel.cs
+            //LoginCommand = new Command(async () => await LoginUser().ConfigureAwait(false));
         }
 
 
