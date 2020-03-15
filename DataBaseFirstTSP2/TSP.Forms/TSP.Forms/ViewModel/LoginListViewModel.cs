@@ -80,12 +80,9 @@ namespace TSP.Forms.ViewModel
                 var resultString = postRequest.Content.ReadAsStringAsync().Result;
                 var resultado = JsonConvert.DeserializeObject<bool>(resultString);
                 verificadorLogin = resultado;
-                
-            }
-            if (verificadorLogin == true)
-            {
                 await App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
+            
         }
 
 
