@@ -33,7 +33,7 @@ namespace TSP.Forms.ViewModel
                     Universidad = usuarioJson.Universidad,
                     Correo = usuarioJson.Correo,
                     Contrasena = usuarioJson.Contrasena,
-                    FotoPerfil = "perfilYer.png"
+                    FotoPerfil = "logoPerfil.PNG"
                 }
 
 
