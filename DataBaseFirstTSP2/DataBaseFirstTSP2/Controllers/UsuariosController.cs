@@ -108,12 +108,14 @@ namespace DataBaseFirstTSP2.Controllers
             var estado = false;
             var user = new Usuario
             {
-                Correo = usuario.Correo
+                Correo = usuario.Correo,
+                Contrasena = usuario.Contrasena 
             };
             string correo = user.Correo;
+            string contrasena = user.Contrasena;
             try
             {
-                var usuarioContext = _context.Usuario.Single(b => correo.Equals(b.Correo));
+                var usuarioContext = _context.Usuario.Single(b => correo.Equals(b.Correo) && contrasena.Equals(b.Contrasena));
                 estado = true;
             }
             catch
