@@ -14,16 +14,19 @@ namespace TSP.Forms.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        public string correo{get;set;}
+        public static readonly BindableProperty correoProperty =
+            BindableProperty.Create("correo", typeof(String), typeof(Entry));
         public LoginPage()
         {
             InitializeComponent();
-            login.Clicked += login_Clicked;
             BindingContext = new LoginListViewModel();
+            login.Clicked += login_Clicked;
         }
 
         void login_Clicked(object sender, EventArgs e)
         {
-            CrossLocalNotifications.Current.Show("Registro Exitoso", "Ahora puedes ingresar con tu correo y tu contraseña", 0, DateTime.Now.AddSeconds(2));
+            
         }
 
         private void ShowPlayerIdHandler(object sender, EventArgs e)

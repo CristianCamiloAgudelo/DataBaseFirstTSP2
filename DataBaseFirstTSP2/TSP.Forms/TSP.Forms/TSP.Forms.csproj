@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Com.OneSignal" Version="3.7.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.Azure.NotificationHubs" Version="3.3.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
