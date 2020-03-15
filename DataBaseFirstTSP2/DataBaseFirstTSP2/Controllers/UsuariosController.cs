@@ -56,6 +56,8 @@ namespace DataBaseFirstTSP2.Controllers
                     Universidad = user.Universidad,
                     Codigo = user.Codigo,
                     Rol = user.Rol,
+                    Correo = user.Correo,
+                    Contrasena = user.Contrasena,
                     EquipoDesarrolloId = user.EquipoDesarrolloId,
                     EquipoDesarrollo = listEquipo.Last()
 
@@ -73,10 +75,7 @@ namespace DataBaseFirstTSP2.Controllers
 
             _context.ChangeTracker.LazyLoadingEnabled = false;
 
-            var usuario = _context.Usuario
-          .SingleOrDefault(b => b.UsuarioId == id);
-
-
+            var usuario = _context.Usuario.Single(b => b.UsuarioId == id);
             if (usuario == null)
             {
                 return null;
@@ -99,7 +98,32 @@ namespace DataBaseFirstTSP2.Controllers
 
             return usuario;
         }
-
+        // Get: api/Usuarios/
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // more details see https://aka.ms/RazorPagesCRUD.
+        [HttpPost]
+        [Route("Login")]
+        public bool PostLogin(Usuario usuario)
+        {
+            var estado = false;
+            var user = new Usuario
+            {
+                Correo = usuario.Correo,
+                Contrasena = usuario.Contrasena 
+            };
+            string correo = user.Correo;
+            string contrasena = user.Contrasena;
+            try
+            {
+                var usuarioContext = _context.Usuario.Single(b => correo.Equals(b.Correo) && contrasena.Equals(b.Contrasena));
+                estado = true;
+            }
+            catch
+            {
+                estado = false;
+            }
+            return estado;
+        }
         // PUT: api/Usuarios/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

@@ -31,7 +31,9 @@ namespace TSP.Forms.ViewModel
                     Apellido = usuarioJson.Apellido,
                     Rol = usuarioJson.Rol,
                     Universidad = usuarioJson.Universidad,
-                    FotoPerfil = "perfilYer.png"
+                    Correo = usuarioJson.Correo,
+                    Contrasena = usuarioJson.Contrasena,
+                    FotoPerfil = "logoPerfil.PNG"
                 }
 
 

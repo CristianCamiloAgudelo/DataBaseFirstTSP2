@@ -1,9 +1,15 @@
 ﻿
+using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TSP.Forms.Model;
 using Xamarin.Forms;
 
 namespace TSP.Forms.ViewModel
@@ -12,64 +18,80 @@ namespace TSP.Forms.ViewModel
     {
         public ICommand LoginCommand { get; private set; }
 
-        private string correoElectronico, contraseña;
+        private string _correo, _contrasena;
 
         public LoginListViewModel()
         {
-            LoginCommand = new Command(async () => await LoginUser());
+            //C:\MicrosoftVisualStudio\DataBaseFirstTSP2\DataBaseFirstTSP2\TSP.Forms\TSP.Forms\ViewModel\LoginListViewModel.cs
+            LoginCommand = new Command(async () => await LoginUser().ConfigureAwait(false));
         }
 
 
 
-        public string CorreoElectronico
+        public string Correo
         {
             get
             {
-                return correoElectronico;
+                return _correo;
             }
             set
             {
-                if (correoElectronico != value)
-                {
-                    correoElectronico = value;
-                    OnPropertyChanged("CorreoElectronico");
-                }
+                _correo = value;
+                OnPropertyChanged("correo");
             }
         }
 
-        public string Contraseña
+        private void RaisePropertyChanged(string propertyName)
+        {
+            var handle = PropertyChanged;
+            if (handle != null)
+            {
+                handle(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public string Contrasena
         {
             get
             {
-                return contraseña;
+                return _contrasena;
             }
             set
             {
-                if (contraseña != value)
-                {
-                    contraseña = value;
-                    OnPropertyChanged("Contraseña");
-                }
+                _contrasena = value;
+                OnPropertyChanged("contraseña");
             }
         }
 
         private async Task LoginUser()
         {
-            await App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            var httpClient = new HttpClient();
+            bool verificadorLogin = false;
+            var user = new Usuario
+            {
+                Correo = "jaime.bernal@gamil.com",
+                Contrasena = "123"
+            };
+            httpClient.BaseAddress = new Uri("https://databasefirsttsp3.azurewebsites.net/");
+            var postRequest = httpClient.PostAsync("api/Usuarios/Login", user, new JsonMediaTypeFormatter()).Result;
+            
+            if (postRequest.IsSuccessStatusCode)
+            {
+                var resultString = postRequest.Content.ReadAsStringAsync().Result;
+                var resultado = JsonConvert.DeserializeObject<bool>(resultString);
+                verificadorLogin = resultado;
+                await App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            }
+            
         }
 
 
         #region ListViewImplemetation2
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged == null)
-            {
-                return;
-            }
-
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged ? .Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }
