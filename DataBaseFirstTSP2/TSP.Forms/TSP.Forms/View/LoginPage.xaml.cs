@@ -14,18 +14,18 @@ namespace TSP.Forms.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public string correo{get;set;}
-        public static readonly BindableProperty correoProperty =
-            BindableProperty.Create("correo", typeof(String), typeof(Entry));
+        
+               
         public LoginPage()
         {
             InitializeComponent();
             BindingContext = new LoginListViewModel();
-            login.Clicked += login_Clicked;
         }
+        
 
-        void login_Clicked(object sender, EventArgs e)
+        public void login_Clicked(object sender, EventArgs e)
         {
+            ShowPlayerIdHandler(sender,e);
             
         }
 

@@ -50,7 +50,7 @@ namespace TSP.Forms.View
         public void GetPlanIndividualApi()
         {
 
-            var json = new WebClient().DownloadString("https://databasefirsttsp3.azurewebsites.net/api/planIndividual/1");
+            var json = new WebClient().DownloadString("https://databasefirsttsp3.azurewebsites.net/api/planIndividual/3");
             var planIndividuals = JsonConvert.DeserializeObject<PlanIndividual>(json);
 
             /**var json2 = new WebClient().DownloadString("https://databasefirsttsp3.azurewebsites.net/api/EquipoDesarrollo/1");
@@ -102,7 +102,7 @@ namespace TSP.Forms.View
             {
                 foreach (Tarea itemTarea in TareasColleccion)
                 {
-                    if (itemTarea.SemanaTerminacionPlaneada == SemanaPublicada && itemTarea.PlanIndividualId == 1)
+                    if (itemTarea.SemanaTerminacionPlaneada == SemanaPublicada && itemTarea.PlanIndividualId == 3)
                     {
                         calendarInlineEvents.Add(
                         new CalendarInlineEvent()

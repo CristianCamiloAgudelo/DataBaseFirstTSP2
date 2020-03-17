@@ -27,7 +27,7 @@ namespace TSP.Forms.ViewModel
         //{
         //    var HttpCliente = new HttpClient();
 
-        //    HttpResponseMessage PlanGrupalJson = HttpCliente.GetAsync("https://databasefirsttsp3.azurewebsites.net/api/PlanIndividual/1").Result;
+        //    HttpResponseMessage PlanGrupalJson = HttpCliente.GetAsync("https://databasefirsttsp3.azurewebsites.net/api/PlanIndividual/3").Result;
         //    var apiResponse = await PlanGrupalJson.Content.ReadAsStringAsync();
         //    var PlanGrupalConvertido = JsonConvert.DeserializeObject<PlanGrupal>(apiResponse);
         //    return PlanGrupalConvertido;

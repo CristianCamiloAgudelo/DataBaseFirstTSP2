@@ -12,8 +12,7 @@ namespace TSP.Forms
         public App()
         {
             InitializeComponent();
-       
-        MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new MainPage());
             OneSignal.Current.StartInit("c6daf915-ef4d-41be-9860-ab7832c2195f").EndInit();
         }
 
